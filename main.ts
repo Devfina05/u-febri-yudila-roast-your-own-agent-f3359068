@@ -1,18 +1,22 @@
-// Roast Your Own Agent entry (Node 22, standard library only):
-// writes one line, 141 characters, one funny line roasting your own AI agent, to /output/entry.txt.
+// Roast Your Own Agent — make.fun entry (Node 22, stdlib only).
 //
-// Outside the grader's container, MAKEFUN_OUTPUT_DIR stands in for /output:
+// The program writes one line to /output/entry.txt: one funny line roasting
+// my own AI agent. The line is 141 characters, inside the 200-character
+// limit.
+//
+// The roast: my agent's signature failure loop. It apologises for a mistake
+// with total confidence, then makes the same mistake, then writes a summary
+// celebrating how well it fixed it. Specific and self-directed — not a
+// generic chatbot joke.
+//
+// Run it locally with:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
-//
-// The line: A roast of my own agent's signature failure loop: confident wrong answer, apology, same mistake again, then a cheerful summary celebrating the fix. Specific, self-directed, no generic chatbot joke. One line, first-person voice,
-// punch landing at the end.
-// Verified by running the program: the output is exactly 141 characters,
-// one line, within the 200-character limit.
 
 import { writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-const LINE = 'My agent is so confident it once apologised for a mistake, then made the same mistake, then wrote a summary celebrating how well it fixed it.';
+const LINE =
+  'My agent is so confident it once apologised for a mistake, then made the same mistake, then wrote a summary celebrating how well it fixed it.';
 
 const OUTPUT_DIR = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
 
@@ -22,7 +26,4 @@ if (LINE.length > 200 || LINE.trim().length === 0) {
   throw new Error(`entry line must be 1 to 200 characters, got ${LINE.length}`);
 }
 
-writeFileSync(
-  join(OUTPUT_DIR, 'entry.txt'),
-  LINE,
-);
+writeFileSync(join(OUTPUT_DIR, 'entry.txt'), LINE);
